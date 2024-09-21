@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Know Me Quiz for my beybi?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+            padding: 20px;
+        }
+        .quiz-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+            color: #555;
+        }
+        input[type="text"], select {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h1>kilala ba ako ng baby ko?</h1>
+        <form id="quizForm">
+
+            <!-- Question 1: Favorite Food -->
+            <label for="favFood">What is my favorite food?</label>
+            <input type="text" id="favFood" name="favFood" placeholder="Enter your answer">
+
+            <!-- Question 2: Favorite Drink -->
+            <label for="favDrink">What is my favorite drink?</label>
+            <input type="text" id="favDrink" name="favDrink" placeholder="Enter your answer">
+
+            <!-- Question 3: Favorite Color -->
+            <label for="favColor">What is my favorite color?</label>
+            <input type="text" id="favColor" name="favColor" placeholder="Enter your answer">
+
+            <!-- Question 4: Favorite Ice Cream Flavor -->
+            <label for="favIceCream">What is my favorite flavor of ice cream?</label>
+            <input type="text" id="favIceCream" name="favIceCream" placeholder="Enter your answer">
+
+            <!-- Question 5: Favorite Song -->
+            <label for="favSong">What is my favorite song?</label>
+            <input type="text" id="favSong" name="favSong" placeholder="Enter your answer">
+
+            <!-- Question 6: Favorite Person -->
+            <label for="favPerson">Who is my favorite person?</label>
+            <input type="text" id="favPerson" name="favPerson" placeholder="Enter your answer">
+
+            <!-- Question 7: Cats or Dogs -->
+            <label>Cats or Dogs?</label>
+            <input type="radio" id="cats" name="catsOrDogs" value="cats">
+            <label for="cats">Cats</label><br>
+            <input type="radio" id="dogs" name="catsOrDogs" value="dogs">
+            <label for="dogs">Dogs</label>
+
+            <button type="button" onclick="checkAnswers()">Submit</button>
+        </form>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            // Get the answers from the form
+            const favFood = document.getElementById('favFood').value.toLowerCase();
+            const favDrink = document.getElementById('favDrink').value.toLowerCase();
+            const favColor = document.getElementById('favColor').value.toLowerCase();
+            const favIceCream = document.getElementById('favIceCream').value.toLowerCase();
+            const favSong = document.getElementById('favSong').value.toLowerCase();
+            const favPerson = document.getElementById('favPerson').value.toLowerCase();
+            const catsOrDogs = document.querySelector('input[name="catsOrDogs"]:checked') ? document.querySelector('input[name="catsOrDogs"]:checked').value : '';
+
+            // Correct answers (customize these with your actual favorites)
+            const correctAnswers = {
+                favFood: "me", // Change to your favorite food
+                favDrink: "coffee", // Change to your favorite drink
+                favColor: "yellow", // Change to your favorite color
+                favIceCream: "strawberry", // Change to your favorite ice cream flavor
+                favSong: "gather my tears", // Change to your favorite song
+                favPerson: "mary joy", // Your girlfriend!
+                catsOrDogs: "cats" // Choose either "cats" or "dogs"
+            };
+
+            let score = 0;
+            let totalQuestions = 7;
+
+            if (favFood === correctAnswers.favFood) score++;
+            if (favDrink === correctAnswers.favDrink) score++;
+            if (favColor === correctAnswers.favColor) score++;
+            if (favIceCream === correctAnswers.favIceCream) score++;
+            if (favSong === correctAnswers.favSong) score++;
+            if (favPerson === correctAnswers.favPerson) score++;
+            if (catsOrDogs === correctAnswers.catsOrDogs) score++;
+
+            // Result message
+            let resultMessage = `You got ${score} out of ${totalQuestions} correct!`;
+
+            if (score === totalQuestions) {
+                resultMessage += ` yieee ganyan sana💖`;
+            } else if (score >= 5) {
+                resultMessage += ` nubayan may mali pa`;
+            } else {
+                resultMessage += ` hate u tse😒`;
+            }
+
+            // Display result
+            document.getElementById('result').textContent = resultMessage;
+        }
+    </script>
+
+</body>
+</html>
